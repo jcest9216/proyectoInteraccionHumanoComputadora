@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:orientation="vertical"
+    android:padding="32dp"
+    android:gravity="center">
+
+    <!-- Texto LOGIN -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="LOGIN"
+        android:textColor="#6A0DAD"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="60dp" />
+
+    <!-- Campo de Usuario -->
+    <EditText
+        android:id="@+id/etUsername"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Usuario"
+        android:textColor="#000000"
+        android:textColorHint="#6A0DAD"
+        android:backgroundTint="#6A0DAD"
+        android:layout_marginBottom="24dp"
+        android:inputType="text"
+        android:padding="16dp" />
+
+    <!-- Campo de Password -->
+    <EditText
+        android:id="@+id/etPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Contraseña"
+        android:textColor="#000000"
+        android:textColorHint="#6A0DAD"
+        android:backgroundTint="#6A0DAD"
+        android:layout_marginBottom="40dp"
+        android:inputType="textPassword"
+        android:padding="16dp" />
+
+    <!-- Botón de Login -->
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Login"
+        android:backgroundTint="#6A0DAD"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="40dp"
+        android:padding="16dp" />
+
+    <!-- Link de Registro -->
+    <TextView
+        android:id="@+id/tvRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="¿No tienes cuenta? Regístrate aquí"
+        android:textColor="#6A0DAD"
+        android:textSize="16sp"
+        android:clickable="true"
+        android:focusable="true"
+        android:paddingVertical="16dp"
+        android:textStyle="italic" />
+
+</LinearLayout>
