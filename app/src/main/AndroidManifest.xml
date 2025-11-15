@@ -11,24 +11,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ProyectoHumanoComputadora">
-
-
-        <!-- Actividad principal: Login -->
         <activity
-            android:name=".LoginActivity"
+            android:name=".StartPatient"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <!-- Otras actividades -->
-        <activity android:name=".dashboards" android:exported="true" />
-        <activity android:name=".vercitas" android:exported="true" />
-        <activity android:name=".RegisterActivity" android:exported="true" />
-
     </application>
-
 
 </manifest>
