@@ -20,7 +20,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:name=".dashboards"
+            android:exported="false"/>
+        <activity android:name=".RegisterActivity"
+            android:exported="false"/>
+        <activity android:name=".vercitas"
             android:exported="false"/>
     </application>
 

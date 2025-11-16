@@ -2,6 +2,7 @@ package com.example.proyectohumanocomputadora;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,15 +12,15 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+
 public class LoginActivity extends AppCompatActivity {
 
     private EditText etUsername;
     private EditText etPassword;
     private Button btnLogin;
     private TextView tvRegister;
+
+    private DB db;  // BASE DE DATOS
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,18 +33,20 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin = findViewById(R.id.btnLogin);
         tvRegister = findViewById(R.id.tvRegister);
 
+        db = new DB(this);
+
+        // BOTÓN LOGIN
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 login();
             }
         });
-        // Queda pendiente hacer la navegación a la vista de registro
-        tvRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(LoginActivity.this, "Ir a registro", Toast.LENGTH_SHORT).show();
-            }
+
+        // IR A REGISTER
+        tvRegister.setOnClickListener(v -> {
+            Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+            startActivity(intent);
         });
     }
 
@@ -60,22 +63,35 @@ public class LoginActivity extends AppCompatActivity {
             etPassword.setError("Ingresa tu contraseña");
             return;
         }
-        // Queda pendiente verificar si el usuario existe en la base de datos
-        if (username.equals("admin") && password.equals("1234")) {
-            guardarSesion(username);
-            startActivity(new Intent(this, dashboards.class));
+
+        // 🔎 VERIFICAR EN LA BASE DE DATOS
+        Cursor cursor = db.login(username, password);
+
+        if (cursor != null && cursor.moveToFirst()) {
+
+            // OBTENER ID Y NOMBRE DEL USUARIO
+            int id = cursor.getInt(cursor.getColumnIndexOrThrow("id"));
+            String nombre = cursor.getString(cursor.getColumnIndexOrThrow("nombre"));
+
+            guardarSesion(id, username);
+
+            // IR AL DASHBOARD
+            Intent intent = new Intent(LoginActivity.this, dashboards.class);
+            intent.putExtra("idUsuario", id);
+            intent.putExtra("nombreUsuario", nombre);
+            startActivity(intent);
             finish();
         } else {
             Toast.makeText(this, "Usuario o contraseña incorrectos", Toast.LENGTH_SHORT).show();
         }
     }
 
-    private void guardarSesion(String usuario) {
+    private void guardarSesion(int idUsuario, String usuario) {
         SharedPreferences prefs = getSharedPreferences("mis_preferencias", MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
         editor.putBoolean("logueado", true);
+        editor.putInt("idUsuario", idUsuario);
         editor.putString("usuario", usuario);
         editor.apply();
     }
 }
-
