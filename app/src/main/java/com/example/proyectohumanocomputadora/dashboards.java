@@ -27,7 +27,7 @@ public class dashboards extends AppCompatActivity {
         btnDocumentos = findViewById(R.id.buttonDocumentos);
         btnCerrarSesion = findViewById(R.id.buttonCerrarSesion);
 
-        int idPaciente = getIntent().getIntExtra("idPaciente", -1);
+        int idPaciente = getIntent().getIntExtra("idUsuario", -1);
 
 
         Cursor cursor = db.getReadableDatabase().rawQuery(
