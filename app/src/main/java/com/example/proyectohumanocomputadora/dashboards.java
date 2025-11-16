@@ -69,14 +69,16 @@ public class dashboards extends AppCompatActivity {
                 intent.putExtra("idPaciente", idPaciente);
                 startActivity(intent);
             }
-        });
+        });*/
 
-        // Listener para Cerrar sesión
         btnCerrarSesion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish(); // Cierra la activity y vuelve al login
+                Intent intent = new Intent(dashboards.this, LoginActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                finish(); // Cierra dashboard
             }
-        });*/
+        });
     }
 }

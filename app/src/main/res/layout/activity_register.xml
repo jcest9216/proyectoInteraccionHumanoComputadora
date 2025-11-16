@@ -1,38 +1,117 @@
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:padding="24dp"
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
 
-    <EditText
-        android:id="@+id/etUsuario"
-        android:hint="Usuario"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="32dp"
+        android:gravity="center">
 
-    <EditText
-        android:id="@+id/etPassword"
-        android:hint="Contraseña"
-        android:inputType="textPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        <!-- TÍTULO -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="REGISTRO"
+            android:textColor="#6A0DAD"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="40dp" />
 
-    <EditText
-        android:id="@+id/etNombre"
-        android:hint="Nombre"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        <!-- Usuario -->
+        <EditText
+            android:id="@+id/etUsuario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Usuario"
+            android:textColor="#000000"
+            android:textColorHint="#6A0DAD"
+            android:backgroundTint="#6A0DAD"
+            android:layout_marginBottom="24dp"
+            android:padding="16dp"
+            android:inputType="text" />
 
-    <EditText
-        android:id="@+id/etApellido"
-        android:hint="Apellido"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        <!-- Contraseña -->
+        <EditText
+            android:id="@+id/etPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Contraseña"
+            android:inputType="textPassword"
+            android:textColor="#000000"
+            android:textColorHint="#6A0DAD"
+            android:backgroundTint="#6A0DAD"
+            android:layout_marginBottom="24dp"
+            android:padding="16dp" />
 
-    <Button
-        android:id="@+id/btnRegistrar"
-        android:text="Registrar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-</LinearLayout>
+        <!-- Nombre -->
+        <EditText
+            android:id="@+id/etNombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nombre"
+            android:textColor="#000000"
+            android:textColorHint="#6A0DAD"
+            android:backgroundTint="#6A0DAD"
+            android:layout_marginBottom="24dp"
+            android:padding="16dp"
+            android:inputType="textPersonName" />
+
+        <!-- Apellido -->
+        <EditText
+            android:id="@+id/etApellido"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Apellido"
+            android:textColor="#000000"
+            android:textColorHint="#6A0DAD"
+            android:backgroundTint="#6A0DAD"
+            android:layout_marginBottom="32dp"
+            android:padding="16dp"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/etClaveMedico"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Clave privada (solo médicos)"
+            android:textColor="#000000"
+            android:textColorHint="#6A0DAD"
+            android:backgroundTint="#6A0DAD"
+            android:layout_marginBottom="24dp"
+            android:inputType="text"
+            android:padding="16dp" />
+
+
+        <!-- Botón Registrar -->
+        <Button
+            android:id="@+id/btnRegistrar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Registrar"
+            android:backgroundTint="#6A0DAD"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:padding="16dp"
+            android:layout_marginBottom="20dp"/>
+
+        <!-- Link Volver al Login -->
+        <TextView
+            android:id="@+id/tvVolverLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="¿Ya tienes cuenta? Inicia sesión"
+            android:textColor="#6A0DAD"
+            android:textSize="16sp"
+            android:clickable="true"
+            android:focusable="true"
+            android:textStyle="italic"
+            android:padding="16dp"/>
+
+    </LinearLayout>
+
+</ScrollView>

@@ -11,27 +11,41 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ProyectoHumanoComputadora">
+
         <activity
             android:name=".VerCitasActivity"
             android:exported="false" />
+
         <activity
             android:name=".AgendarCitaActivity"
             android:exported="false" />
+
         <activity
-            android:name=".LoginActivity"
+            android:name=".Splash"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
+        <activity
+            android:name=".LoginActivity"
+            android:exported="false" />
+
         <activity
             android:name=".dashboards"
             android:exported="false" />
+
         <activity
             android:name=".RegisterActivity"
             android:exported="false" />
+
+        <activity
+            android:name=".DashboardsMedico"
+            android:exported="false" />
+
     </application>
 
 </manifest>

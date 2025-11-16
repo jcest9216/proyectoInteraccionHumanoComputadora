@@ -1,15 +1,20 @@
 package com.example.proyectohumanocomputadora;
 
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TimePicker;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+import java.util.Calendar;
 
 public class AgendarCitaActivity extends AppCompatActivity {
 
@@ -29,40 +34,91 @@ public class AgendarCitaActivity extends AppCompatActivity {
         SharedPreferences prefs = getSharedPreferences("mis_preferencias", MODE_PRIVATE);
         idPaciente = prefs.getInt("idUsuario", -1);
 
-        // Verificar el id es válido
         if (idPaciente == -1) {
             Toast.makeText(this, "Error: No se pudo identificar al usuario", Toast.LENGTH_SHORT).show();
             finish();
             return;
         }
 
-        // Inicializar vistas
         spinnerMedicos = findViewById(R.id.spinnerMedicos);
         etFecha = findViewById(R.id.etFecha);
         etHora = findViewById(R.id.etHora);
         etMotivo = findViewById(R.id.etMotivo);
         btnAgendarCita = findViewById(R.id.btnAgendarCita);
 
-        // Cargar médicos en el Spinner
         cargarMedicos();
 
-        // Configurar botón
-        btnAgendarCita.setOnClickListener(new View.OnClickListener() {
+        // 📅 ABRIR CALENDARIO AL TOCAR FECHA
+        etFecha.setFocusable(false);
+        etFecha.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mostrarCalendario();
+            }
+        });
+
+        // ⏰ ABRIR RELOJ AL TOCAR HORA
+        etHora.setFocusable(false);
+        etHora.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mostrarReloj();
+            }
+        });
+
+        btnAgendarCita.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 agendarCita();
             }
         });
     }
 
+    private void mostrarCalendario() {
+        final Calendar calendario = Calendar.getInstance();
+
+        int año = calendario.get(Calendar.YEAR);
+        int mes = calendario.get(Calendar.MONTH);
+        int dia = calendario.get(Calendar.DAY_OF_MONTH);
+
+        DatePickerDialog dialog = new DatePickerDialog(
+                this,
+                new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int año, int mes, int dia) {
+                        etFecha.setText(dia + "/" + (mes + 1) + "/" + año);
+                    }
+                }, año, mes, dia
+        );
+
+        dialog.show();
+    }
+
+    private void mostrarReloj() {
+        final Calendar calendario = Calendar.getInstance();
+
+        int hora = calendario.get(Calendar.HOUR_OF_DAY);
+        int minuto = calendario.get(Calendar.MINUTE);
+
+        TimePickerDialog dialog = new TimePickerDialog(
+                this,
+                new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int horaSel, int minutoSel) {
+                        etHora.setText(String.format("%02d:%02d", horaSel, minutoSel));
+                    }
+                }, hora, minuto, true
+        );
+
+        dialog.show();
+    }
+
     private void cargarMedicos() {
-        // Obtener todos los usuarios que son médicos
         Cursor cursor = db.getReadableDatabase().rawQuery(
                 "SELECT id, nombre, apellido FROM usuarios WHERE tipo='medico'",
                 null
         );
 
-        // Verificar si hay médicos disponibles
         if (cursor.getCount() == 0) {
             String[] noMedicos = {"No hay médicos disponibles"};
             ArrayAdapter<String> adapter = new ArrayAdapter<>(
@@ -76,20 +132,17 @@ public class AgendarCitaActivity extends AppCompatActivity {
             return;
         }
 
-        // Crear array para mostrar en el spinner
         String[] medicos = new String[cursor.getCount()];
         final int[] idsMedicos = new int[cursor.getCount()];
 
         int index = 0;
         while (cursor.moveToNext()) {
-            String nombreCompleto = cursor.getString(1) + " " + cursor.getString(2);
-            medicos[index] = nombreCompleto;
+            medicos[index] = cursor.getString(1) + " " + cursor.getString(2);
             idsMedicos[index] = cursor.getInt(0);
             index++;
         }
         cursor.close();
 
-        // Configurar el spinner
         ArrayAdapter<String> adapter = new ArrayAdapter<>(
                 this,
                 android.R.layout.simple_spinner_item,
@@ -98,12 +151,10 @@ public class AgendarCitaActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerMedicos.setAdapter(adapter);
 
-        // Guardar los IDs en el tag del spinner para acceder después
         spinnerMedicos.setTag(idsMedicos);
     }
 
     private void agendarCita() {
-        // Validar que hay médicos disponibles
         if (spinnerMedicos.getSelectedItem() == null || !spinnerMedicos.isEnabled()) {
             Toast.makeText(this, "No hay médicos disponibles", Toast.LENGTH_SHORT).show();
             return;
@@ -128,17 +179,15 @@ public class AgendarCitaActivity extends AppCompatActivity {
             return;
         }
 
-        // Obtener ID del médico seleccionado
         int selectedPosition = spinnerMedicos.getSelectedItemPosition();
         int[] idsMedicos = (int[]) spinnerMedicos.getTag();
         int idMedico = idsMedicos[selectedPosition];
 
-        // Agendar cita en la base de datos
         boolean exito = db.agendarCita(idPaciente, idMedico, fecha, hora, motivo);
 
         if (exito) {
             Toast.makeText(this, "Cita agendada exitosamente", Toast.LENGTH_SHORT).show();
-            finish(); // Regresar al dashboard
+            finish();
         } else {
             Toast.makeText(this, "Error al agendar la cita", Toast.LENGTH_SHORT).show();
         }
