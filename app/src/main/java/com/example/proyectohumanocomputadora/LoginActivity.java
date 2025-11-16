@@ -14,7 +14,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-
 public class LoginActivity extends AppCompatActivity {
 
     private EditText etUsername;
@@ -64,7 +63,7 @@ public class LoginActivity extends AppCompatActivity {
         // Queda pendiente verificar si el usuario existe en la base de datos
         if (username.equals("admin") && password.equals("1234")) {
             guardarSesion(username);
-            startActivity(new Intent(this, MainActivity.class));
+            startActivity(new Intent(this, dashboards.class));
             finish();
         } else {
             Toast.makeText(this, "Usuario o contraseña incorrectos", Toast.LENGTH_SHORT).show();
@@ -79,3 +78,4 @@ public class LoginActivity extends AppCompatActivity {
         editor.apply();
     }
 }
+
