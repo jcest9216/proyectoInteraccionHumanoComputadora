@@ -45,12 +45,11 @@ public class dashboards extends AppCompatActivity {
         btnVerCitas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(dashboards.this, vercitas.class);
+                Intent intent = new Intent(dashboards.this, VerCitasActivity.class);
                 intent.putExtra("idPaciente", idPaciente);
                 startActivity(intent);
             }
         });
-/*
         // Listener para Agendar nueva cita
         btnAgendar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,6 +60,7 @@ public class dashboards extends AppCompatActivity {
             }
         });
 
+/*
         // Listener para Documentos
         btnDocumentos.setOnClickListener(new View.OnClickListener() {
             @Override
