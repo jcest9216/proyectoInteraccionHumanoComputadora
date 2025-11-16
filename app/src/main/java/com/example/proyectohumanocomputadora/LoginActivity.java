@@ -20,7 +20,7 @@ public class LoginActivity extends AppCompatActivity {
     private Button btnLogin;
     private TextView tvRegister;
 
-    private DB db;  // BASE DE DATOS
+    private DB db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +35,6 @@ public class LoginActivity extends AppCompatActivity {
 
         db = new DB(this);
 
-        // BOTÓN LOGIN
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -43,7 +42,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        // IR A REGISTER
         tvRegister.setOnClickListener(v -> {
             Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
             startActivity(intent);
@@ -64,23 +62,32 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
-        // 🔎 VERIFICAR EN LA BASE DE DATOS
+        // Consultar en la BD
         Cursor cursor = db.login(username, password);
 
         if (cursor != null && cursor.moveToFirst()) {
 
-            // OBTENER ID Y NOMBRE DEL USUARIO
             int id = cursor.getInt(cursor.getColumnIndexOrThrow("id"));
             String nombre = cursor.getString(cursor.getColumnIndexOrThrow("nombre"));
+            String tipo = cursor.getString(cursor.getColumnIndexOrThrow("tipo"));
 
             guardarSesion(id, username);
 
-            // IR AL DASHBOARD
-            Intent intent = new Intent(LoginActivity.this, dashboards.class);
-            intent.putExtra("idUsuario", id);
-            intent.putExtra("nombreUsuario", nombre);
-            startActivity(intent);
+            // 🔥 Verificar si es médico o paciente
+            if (tipo.equals("medico")) {
+                Intent intent = new Intent(LoginActivity.this, DashboardsMedico.class);
+                intent.putExtra("idUsuario", id);
+                intent.putExtra("nombreUsuario", nombre);
+                startActivity(intent);
+            } else {
+                Intent intent = new Intent(LoginActivity.this, dashboards.class);
+                intent.putExtra("idUsuario", id);
+                intent.putExtra("nombreUsuario", nombre);
+                startActivity(intent);
+            }
+
             finish();
+
         } else {
             Toast.makeText(this, "Usuario o contraseña incorrectos", Toast.LENGTH_SHORT).show();
         }
