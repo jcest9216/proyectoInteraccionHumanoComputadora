@@ -12,6 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProyectoHumanoComputadora">
         <activity
+            android:name=".VerCitasActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AgendarCitaActivity"
+            android:exported="false" />
+        <activity
             android:name=".LoginActivity"
             android:exported="true">
             <intent-filter>
@@ -20,13 +26,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".dashboards"
-            android:exported="false"/>
-        <activity android:name=".RegisterActivity"
-            android:exported="false"/>
-        <activity android:name=".vercitas"
-            android:exported="false"/>
+        <activity
+            android:name=".dashboards"
+            android:exported="false" />
+        <activity
+            android:name=".RegisterActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

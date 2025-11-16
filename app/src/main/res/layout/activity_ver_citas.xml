@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical"
+android:padding="16dp"
+android:background="#FFFFFF">
+
+<!-- Título -->
+<TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Mis Citas Agendadas"
+    android:textColor="#6A0DAD"
+    android:textSize="24sp"
+    android:textStyle="bold"
+    android:gravity="center"
+    android:layout_marginBottom="24dp" />
+
+<!-- Lista de citas -->
+<ListView
+    android:id="@+id/listViewCitas"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="1"
+    android:divider="#E0E0E0"
+    android:dividerHeight="1dp" />
+
+<!-- Mensaje cuando no hay citas -->
+<TextView
+    android:id="@+id/tvNoCitas"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="No tienes citas agendadas"
+    android:textColor="#666666"
+    android:textSize="16sp"
+    android:gravity="center"
+    android:padding="32dp"
+    android:visibility="gone" />
+
+<!-- Botón Volver -->
+<Button
+    android:id="@+id/btnVolver"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Volver al Dashboard"
+    android:backgroundTint="#6A0DAD"
+    android:textColor="#FFFFFF"
+    android:textSize="16sp"
+    android:layout_marginTop="16dp" />
+
+</LinearLayout>
