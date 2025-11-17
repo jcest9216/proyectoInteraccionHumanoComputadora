@@ -47,6 +47,11 @@
         <activity
             android:name=".DashboardsMedico"
             android:exported="false" />
+
+        <activity
+        android:name=".DocumentosPaciente"
+        android:exported="false" />
+
     </application>
 
 </manifest>
