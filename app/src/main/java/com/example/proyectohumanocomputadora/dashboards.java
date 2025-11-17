@@ -60,16 +60,16 @@ public class dashboards extends AppCompatActivity {
             }
         });
 
-/*
+
         // Listener para Documentos
         btnDocumentos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(dashboards.this, DocumentosActivity.class);
+                Intent intent = new Intent(dashboards.this, DocumentosPaciente.class);
                 intent.putExtra("idPaciente", idPaciente);
                 startActivity(intent);
             }
-        });*/
+        });
 
         btnCerrarSesion.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,7 +77,7 @@ public class dashboards extends AppCompatActivity {
                 Intent intent = new Intent(dashboards.this, LoginActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
-                finish(); // Cierra dashboard
+                finish();
             }
         });
     }

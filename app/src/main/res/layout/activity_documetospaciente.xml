@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="24dp"
+    android:background="#FFFFFF">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Responde las siguientes preguntas"
+            android:textSize="20sp"
+            android:textColor="#6A0DAD"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Pregunta alergias -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="¿Eres alérgico a algo?"
+            android:textSize="16sp"
+            android:textColor="#000000" />
+        <EditText
+            android:id="@+id/etAlergias"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Describe tus alergias"
+            android:layout_marginBottom="16dp"
+            android:inputType="textMultiLine"
+            android:gravity="top"/>
+
+        <!-- Pregunta enfermedades crónicas -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="¿Tienes alguna enfermedad crónica?"
+            android:textSize="16sp"
+            android:textColor="#000000" />
+        <EditText
+            android:id="@+id/etEnfermedades"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Describe tus enfermedades crónicas"
+            android:layout_marginBottom="24dp"
+            android:inputType="textMultiLine"
+            android:gravity="top"/>
+
+        <!-- Subir INE -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sube tu INE"
+            android:textSize="16sp"
+            android:textColor="#000000" />
+        <Button
+            android:id="@+id/btnSubirINE"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Seleccionar archivo"
+            android:layout_marginBottom="24dp"/>
+
+        <!-- Documentos subidos -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Documentos subidos:"
+            android:textSize="16sp"
+            android:textColor="#000000"
+            android:layout_marginBottom="8dp"/>
+
+        <LinearLayout
+            android:id="@+id/layoutDocumentosSubidos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+
+        <!-- Guardar y regresar -->
+        <Button
+            android:id="@+id/btnGuardarDocumentos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Guardar y regresar"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:padding="16dp"
+            android:layout_marginTop="16dp"/>
+
+        <!-- Nuevo botón: Regresar al Dashboard -->
+        <Button
+            android:id="@+id/btnRegresarDashboard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Regresar al Dashboard"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:padding="16dp"
+            android:layout_marginTop="16dp"/>
+
+    </LinearLayout>
+</ScrollView>

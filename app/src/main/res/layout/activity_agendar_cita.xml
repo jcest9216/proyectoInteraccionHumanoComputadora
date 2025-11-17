@@ -98,6 +98,19 @@
         android:textColor="#FFFFFF"
         android:textSize="18sp"
         android:textStyle="bold"
+        android:padding="16dp"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Botón Regresar -->
+    <Button
+        android:id="@+id/btnRegresarDashboard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Regresar al Dashboard"
+        android:backgroundTint="#6A0DAD"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:textStyle="bold"
         android:padding="16dp" />
 
 </LinearLayout>
