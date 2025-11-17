@@ -20,7 +20,7 @@ public class AgendarCitaActivity extends AppCompatActivity {
 
     private Spinner spinnerMedicos;
     private EditText etFecha, etHora, etMotivo;
-    private Button btnAgendarCita;
+    private Button btnAgendarCita, etbutton;
     private DB db;
     private int idPaciente;
 
@@ -45,6 +45,8 @@ public class AgendarCitaActivity extends AppCompatActivity {
         etHora = findViewById(R.id.etHora);
         etMotivo = findViewById(R.id.etMotivo);
         btnAgendarCita = findViewById(R.id.btnAgendarCita);
+        Button btnRegresar = findViewById(R.id.btnRegresarDashboard);
+        btnRegresar.setOnClickListener(v -> finish());
 
         cargarMedicos();
 
